@@ -51,7 +51,7 @@ npm_translate_lock(
             "tsserver": "./bin/tsserver",
         },
     },
-    # npmrc = "//:.npmrc",
+    npmrc = "//:.npmrc",
     pnpm_lock = "//:pnpm-lock.yaml",
     verify_node_modules_ignored = "//:.bazelignore",
 )
