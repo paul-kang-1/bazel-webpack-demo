@@ -1,0 +1,1 @@
+declare module 'utils/index.js'
