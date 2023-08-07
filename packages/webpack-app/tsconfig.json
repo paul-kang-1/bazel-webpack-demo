@@ -6,9 +6,9 @@
     "outDir": "dist",
     "strict": true,
     "allowJs": true,
-    "allowSyntheticDefaultImports" : true,
-    "esModuleInterop" : true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "noImplicitAny": true,
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*"]
 }

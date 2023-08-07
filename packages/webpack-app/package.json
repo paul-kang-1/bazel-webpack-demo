@@ -1,7 +1,7 @@
 {
   "name": "webpack-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "minimal webpack app with local file deps",
   "main": "index.js",
   "keywords": [],
   "author": "",
@@ -16,10 +16,12 @@
   },
   "scripts": {
     "start": "webpack serve --mode development --open",
+    "istart": "ibazel run serve",
     "build": "webpack --mode production"
   },
   "devDependencies": {
+    "@bazel/ibazel": "^0.16.2",
     "ts-loader": "^9.4.4",
-    "typescript": "^5.1.6"
+    "typescript": "5.1.5"
   }
 }
