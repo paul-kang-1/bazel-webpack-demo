@@ -16,7 +16,7 @@ As a mode of comparison, each steps are also built to be runnable locally withou
 ### Installation
 
 #### Building via Bazel
-Building/updating the image is as simple as below:
+Building/updating the image is as simple as below using `rules_oci`:
 ```sh
 cd example-rules-oci/packages/webpack-app
 bazel run image_tar
