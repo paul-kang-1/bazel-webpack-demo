@@ -30,7 +30,7 @@ Unlike the standard approach on containerization (installing deps, bundling code
 
 Try making changes in the source code (e.g. `packages/webpack-app/src/index.ts`) then repeat the steps above to see updates in the image. Make sure to either do a hard reload (`CTRL+SHIFT+R`) or keep the browser on private mode to prevent serving cached files.
 
-Bundling code and monitoring changes (via Webpack `devserver`) without building a container are also possible in Bazel. This workflow could be used the development phase.
+Bundling code and monitoring changes (via Webpack `devserver`) without building a container are also possible in Bazel. This workflow could be used in the development phase.
 ```sh
 cd packages/webpack-app
 # pnpm istart uses iBazel to generate files / live reload changes
