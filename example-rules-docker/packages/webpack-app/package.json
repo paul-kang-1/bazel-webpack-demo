@@ -1,0 +1,27 @@
+{
+  "name": "webpack-app",
+  "version": "1.0.0",
+  "description": "minimal webpack app with local file deps",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/lodash": "^4.14.196",
+    "lodash": "^4.17.21",
+    "utils": "file:../utils",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "scripts": {
+    "start": "webpack serve --mode development --open",
+    "istart": "ibazel run serve",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "@bazel/ibazel": "^0.16.2",
+    "ts-loader": "^9.4.4",
+    "typescript": "5.1.5"
+  }
+}
