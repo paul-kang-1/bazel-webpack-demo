@@ -42,7 +42,7 @@ Try making changes in the source code (e.g. `packages/webpack-app/src/index.ts`)
 
 Bundling code and monitoring changes (via Webpack `devserver`) without building a container are also possible in Bazel. This workflow could be used in the development phase.
 ```sh
-cd packages/webpack-app
+cd example-rules-oci/packages/webpack-app # either rules-oci or rules-docker dir works
 # pnpm istart uses iBazel to generate files / live reload changes
 # check localhost:8080
 pnpm istart
@@ -54,7 +54,7 @@ bazel build bundle
 - Install `node_modules` via `pnpm install`
 - Generate and serve files via:
     ```sh
-    cd packages/webpack-app
+    cd example-rules/docker/packages/webpack-app
     pnpm start
     ```
 - Or build and run the image by:
