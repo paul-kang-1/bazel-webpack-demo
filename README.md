@@ -5,7 +5,7 @@ This repository provides an example of integrating Bazel with the e2e procedure 
 2. Bundling the code and assets with `Webpack`
 3. Serving the bundled static files either locally (via `devserver`) or through a Docker image (via `nginx`)
 
-Aspect's `rules_oci` and `rules_webpack` were used to implement this build system.
+Aspect's `rules_oci` and `rules_webpack` were used to implement this build system, available under `example-rules-oci`. For backwards compatibility, an equivalent implementation using `rules_docker` is available on `example-rules-docker`.
 
 As a mode of comparison, each steps are also built to be runnable locally without `Bazel`.
 
@@ -18,10 +18,20 @@ As a mode of comparison, each steps are also built to be runnable locally withou
 #### Building via Bazel
 Building/updating the image is as simple as below:
 ```sh
+cd example-rules-oci/packages/webpack-app
 bazel run image_tar
 # Try running the image w/ below command
 docker run --rm -p 8080:80 webpack-app:latest
 ```
+
+Otherwise, it is also possible to produce an image via `rules_docker`:
+```sh
+cd example-rules-docker/packages/webpack-app
+bazel run webpack-docker
+# Try running the image w/ below command
+docker run --rm -p 8080:80 bazel/packages/webpack-app:webpack-docker
+```
+
 Unlike the standard approach on containerization (installing deps, bundling code and serving all inside a container, as defined in a `Dockerfile`), this method runs the first two steps in the Bazel sandbox, and only feeds the generated static files to the image. This approach is advantageous in various ways:
 
 - Maintain the same level of hermeticity compared to a container build process
