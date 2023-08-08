@@ -1,4 +1,3 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle", "webpack_devserver")
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
