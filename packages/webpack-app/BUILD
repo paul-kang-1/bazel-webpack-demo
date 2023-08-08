@@ -2,6 +2,9 @@ load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
 load("@aspect_rules_webpack//webpack:defs.bzl", "webpack_bundle", "webpack_devserver")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
+load("@aspect_rules_js//js:defs.bzl", "js_image_layer")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
 npm_link_all_packages(
     name = "node_modules",
@@ -12,7 +15,7 @@ webpack_bundle(
     srcs = glob(["src/**"]),
 	chdir = package_name(),
     node_modules = ":node_modules",
-	output_dir = True,
+	entry_point = "src/index.ts",
 	webpack_config = ":webpack.config.js",
 	deps = [
 		":tsconfig.json",
@@ -21,6 +24,7 @@ webpack_bundle(
 		":node_modules/ts-loader",
 		":node_modules/utils",
 	],
+	data = [ "dist/index.html" ],
 )
 
 webpack_devserver(
@@ -37,6 +41,26 @@ webpack_devserver(
 	]
 )
 
+pkg_tar(
+	name = "static_tar",
+	srcs = [":bundle", "dist/index.html"],
+	package_dir = "/usr/share/nginx/html",
+)
+
+oci_image(
+	name = "image",
+	base = "@nginx_debian_slim",
+	tars = [
+		":static_tar",
+	],
+)
+
+oci_tarball(
+	name ="image_tar",
+	image = ":image",
+	repo_tags = ["webpack-app:latest"],
+)
+
 ts_project(
     name = "transpile",
     srcs = glob(["src/**"]),
@@ -48,3 +72,4 @@ ts_project(
         ":node_modules",
     ],
 )
+
