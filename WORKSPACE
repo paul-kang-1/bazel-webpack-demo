@@ -8,13 +8,6 @@ http_archive(
 )
 
 http_archive(
-    name = "aspect_rules_ts",
-    sha256 = "4c3f34fff9f96ffc9c26635d8235a32a23a6797324486c7d23c1dfa477e8b451",
-    strip_prefix = "rules_ts-1.4.5",
-    url = "https://github.com/aspect-build/rules_ts/releases/download/v1.4.5/rules_ts-v1.4.5.tar.gz",
-)
-
-http_archive(
     name = "aspect_rules_webpack",
     sha256 = "78d05d9e87ee804accca80a4fec98a66f146b6058e915eae3d97190397ad12df",
     strip_prefix = "rules_webpack-0.12.0",
@@ -44,10 +37,6 @@ http_archive(
 load("@aspect_rules_js//js:repositories.bzl", "rules_js_dependencies")
 
 rules_js_dependencies()
-
-load("@aspect_rules_ts//ts:repositories.bzl", "rules_ts_dependencies")
-
-rules_ts_dependencies(ts_version_from = "//packages/webpack-app:package.json")
 
 load("@aspect_rules_webpack//webpack:dependencies.bzl", "rules_webpack_dependencies")
 
