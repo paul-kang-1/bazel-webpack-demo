@@ -25,7 +25,7 @@ docker run --rm -p 8080:80 webpack-app:latest
 Unlike the standard approach on containerization (installing deps, bundling code and serving all inside a container, as defined in a `Dockerfile`), this method runs the first two steps in the Bazel sandbox, and only feeds the generated static files to the image. This approach is advantageous in various ways:
 
 - Maintain the same level of hermeticity compared to a container build process
-- Decrease the number of layers required to build an image
+- Minimize the number of dependencies and layers required to build an image (decouple NodeJS from image)
 - Make better use of caching in different parts (`pnpm` and `webpack`) - an advantage of an artifact-based build system
 
 Try making changes in the source code (e.g. `packages/webpack-app/src/index.ts`) then repeat the steps above to see updates in the image. Make sure to either do a hard reload (`CTRL+SHIFT+R`) or keep the browser on private mode to prevent serving cached files.
